@@ -1,0 +1,13 @@
+Cybersecurity Awareness - Introduction
+
+Cybersecurity protects computers, networks, accounts, and personal information from unauthorized access and cyberattacks.
+
+Phishing is a cyberattack in which criminals use fraudulent emails, messages, or websites to trick people into revealing sensitive information.
+
+Multi-factor authentication (MFA) adds an additional layer of security by requiring more than one form of verification.
+
+Strong passwords should be unique for each account. A password manager can help users create and store strong passwords.
+
+Ransomware is malicious software that encrypts files or disrupts access to systems, often demanding payment.
+
+Regular software updates, secure backups, and employee cybersecurity awareness training help reduce security risks.
