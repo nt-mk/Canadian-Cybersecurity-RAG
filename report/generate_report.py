@@ -193,6 +193,8 @@ paragraph(
     "in region us-central1."
 )
 
+screenshot("cloud_run_deployment.png", "Figure 3. Google Cloud Run deployment and service metrics.")
+
 heading("10. AI Use Disclosure")
 paragraph(
     "AI assistance supported coding, debugging, evaluation scripts, "
