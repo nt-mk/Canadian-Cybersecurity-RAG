@@ -1,0 +1,7 @@
+.env*
+.venv/
+.git/
+chroma_db/
+docker-build.log
+__pycache__/
+*.pyc
