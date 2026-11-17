@@ -36,7 +36,19 @@ Example POST /query JSON:
 
 ## Current Status
 Document retrieval and Langfuse retrieval tracing have been tested.
-Gemini answer generation and cloud deployment are pending verification.
+Gemini answer generation through Vertex AI and Google Cloud Run deployment have been verified successfully.
+
+### Live Cloud Run API
+
+https://canadian-cybersecurity-rag-39590265002.us-central1.run.app
+
+- Public `GET /health`: verified HTTP 200.
+- `POST /query`: verified HTTP 200 using Gemini 3.8 Flash through Vertex AI with retrieved OWASP context.
+- Google Cloud Storage: 100 source documents uploaded to `gs://canadian-cybersecurity-rag-docs-39590265002/documents/raw/`.
+- Cloud Run region: `us-central1`.
+- Project ID: `gen-lang-client-0227281842`.
+- Langfuse tracing and retrieval evaluation are included in the project.
+
 
 ## Data Attribution
 Cybersecurity guidance documents sourced primarily from the OWASP Cheat Sheet Series.
