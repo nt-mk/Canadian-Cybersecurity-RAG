@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "question": "What is SQL injection and how can it be prevented?",
+    "answer": "SQL injection is a type of attack where untrusted data, often in the form of strings, is used to modify the structure of a SQL query. This can lead to unauthorized access to the database, data modification, or even the execution of administrative operations. The attack can originate from various sources such as HTTP requests, LDAP directories, incoming emails, third-party REST API services, or the database itself.\n\nTo prevent SQL injection, one should use techniques similar to those used for preventing SQL injection attacks. This involves defining the SQL structure separately from its data values. This separation ensures that untrusted data is not directly incorporated into the SQL syntax, thereby preventing the SQL injection attack. Additionally, using parameterized queries or prepared statements can also help prevent SQL injection by ensuring that data is treated as data rather than executable code. Frameworks that automatically escape variables can also be used to prevent SQL injection.",
+    "sources": [
+      {
+        "text": "# SQL Injection Prevention Cheat Sheet ## Introduction A SQL injection attack occurs when untrusted data (usually strings) becomes part of a query's SQL syntax, modifying the logic of the SQL request. The malicious data can come from various sources such as: - an HTTP request (for example, from a malicious user); - an LDAP directory; - an incoming email; - a third party REST API service; - the database itself. **Impact:** A successful SQL injection attack can, depending on database features and privileges, read data from the database, modify database data (insert/update/delete), execute administration operations on the database (such as shutdown the DBMS), recover the content of a given file existing on the DBMS file system or write files into the file system, and, in some cases, execute operating system commands. **Resolution:** define the SQL structure separately from its data values, ",
+        "source": "SQL_Injection_Prevention_Cheat_Sheet.md",
+        "distance": 0.4348279535770416
+      },
+      {
+        "text": " through techniques similar to [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection). LDAP injection attacks could result in the granting of permissions to unauthorized queries, and content modification inside the LDAP tree. For more information on LDAP Injection attacks, visit [LDAP injection](https://owasp.org/www-community/attacks/LDAP_Injection). This cheatsheet is focused on providing clear, simple, actionable guidance for preventing LDAP Injection flaws in your applications. [LDAP injection](https://owasp.org/www-community/attacks/LDAP_Injection) attacks are common due to two factors: 1. The lack of safer, parameterized LDAP query interfaces 2. The widespread use of LDAP to authenticate users to systems. Primary Defenses: - Escape all variables using the right LDAP encoding function - Use a framework that escapes automatically. Additional Defenses: - Least Privileg",
+        "source": "LDAP_Injection_Prevention_Cheat_Sheet.md",
+        "distance": 0.6636807918548584
+      },
+      {
+        "text": "# Injection Prevention Cheat Sheet ## Introduction This article is focused on providing clear, simple, actionable guidance for preventing injection flaws in your applications. Injection attacks, for example [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), are unfortunately very common. Application accessibility is a very important factor in protection and prevention of injection flaws. Only the minority of all applications within a company/enterprise are developed in house, where as most applications are from external sources. Open source applications give at least the opportunity to fix problems, but closed source applications need a different approach to injection flaws. Injection flaws occur when an application sends untrusted data to an interpreter. Injection flaws are very prevalent, particularly in legacy code, often found in SQL queries, LDAP queries, XPath ",
+        "source": "Injection_Prevention_Cheat_Sheet.md",
+        "distance": 0.7752515077590942
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "How do parameterized queries prevent SQL injection?",
+    "answer": "Parameterized queries prevent SQL injection by defining the SQL structure separately from its data values. This means that the structure of the SQL query, such as table names, column names, and sort directions, are kept fixed and application-owned. The actual data values are then bound to the query through the database API. This approach effectively isolates the SQL structure from any user input, which cannot be altered by the user, thus preventing the user from injecting malicious SQL code. This method is a preferred pattern for preventing SQL Injection, as it is more secure and less error-prone compared to manually escaping dynamic inputs.",
+    "sources": [
+      {
+        "text": "# Query Parameterization Cheat Sheet ## Introduction [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection) is one of the most dangerous web vulnerabilities. As of the [OWASP Top 10:2025](https://owasp.org/Top10/2025/A05_2025-Injection/), it is categorized under A05:2025-Injection. It represents a serious threat because SQL Injection allows evil attacker code to change the structure of a web application's SQL statement in a way that can steal data, modify data, or potentially facilitate command injection to the underlying OS. See also the [SQL Injection Prevention Cheat Sheet](SQL_Injection_Prevention_Cheat_Sheet.md). ## Parameterized Query Examples SQL Injection is best prevented through the use of [*parameterized queries*](SQL_Injection_Prevention_Cheat_Sheet.md). The following chart demonstrates, with real-world code samples, how to build parameterized queries in most ",
+        "source": "Query_Parameterization_Cheat_Sheet.md",
+        "distance": 0.39781245589256287
+      },
+      {
+        "text": " ## Primary Defenses The preferred patterns are: - **parameterized queries** when including dynamic data in SQL requests; - for structural parts that cannot be parameterized (table names, column names, sort direction), map user choices to a **strict allow-list** of fixed, application-owned values. Relying on manually escaping dynamic inputs is error-prone and is strongly discouraged. ### Parameterized Queries Define the SQL structure separately from its data values and bind those values through the database API, as shown in the [Basic SQL injection](#basic-sql-injection) example. Concatenating untrusted values into the query before preparing it defeats this protection. See the [Query Parameterization Cheat Sheet](Query_Parameterization_Cheat_Sheet.md) for additional examples of parameterized queries in several languages, including Java, .NET, Ruby, PHP, Cold Fusion, Perl, and Rust. Other",
+        "source": "SQL_Injection_Prevention_Cheat_Sheet.md",
+        "distance": 0.4374091327190399
+      },
+      {
+        "text": "(SQL_Injection_Prevention_Cheat_Sheet.md). The following chart demonstrates, with real-world code samples, how to build parameterized queries in most of the common web languages. The purpose of these code samples is to demonstrate to the web developer how to avoid SQL Injection when building database queries within a web application. Please note, many client side frameworks and libraries offer client side query parameterization. These libraries often just build queries with string concatenation before sending raw queries to a server. Please ensure that query parameterization is done server-side! ### Prepared Statement Examples #### Using Java built-in feature ```java String custname = request.getParameter(\"customerName\"); String query = \"SELECT account_balance FROM user_data WHERE user_name = ? \"; PreparedStatement pstmt = connection.prepareStatement( query ); pstmt.setString( 1, custnam",
+        "source": "Query_Parameterization_Cheat_Sheet.md",
+        "distance": 0.6289833784103394
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What is cross-site scripting and how can it be prevented?",
+    "answer": "Cross-Site Scripting (XSS) is a security vulnerability that occurs when an attacker injects client-side script into an application. This script can then be executed by users who visit the same page. XSS can be used to steal data from users, impersonate users, or perform other malicious actions. \n\nTo prevent XSS, developers can use a combination of techniques. Here are some of the key methods:\n\n1. **Content Security Policy (CSP):** This is a security feature that helps to prevent XSS attacks by restricting the sources of inline scripts, scripts, and styles that can be executed on a webpage. For example, a basic Content Security Policy might look like this: `Content-Security-Policy: default-src 'self'; frame-ancestors 'self'; form-action 'self';`.\n\n2. **Sanitization of User Input:** Libraries like DOMPurify can be used to sanitize user input before displaying it on a webpage. This ensures that any malicious scripts are removed before they can be executed.\n\n3. **Implementing CSP:** By implementing a Content Security Policy, you can restrict the sources of inline scripts, scripts, and styles that can be executed on a webpage. This helps to prevent attackers from injecting malicious scripts.\n\n4. **Limit Data Collection and Transparency:** Limit the data that is collected and be transparent about what data is collected in a Privacy Policy. Implement user consent mechanisms before collecting or sending any personal data.\n\n5. **HTTPS Usage:** Use HTTPS for all communications to prevent data interception. This ensures that data is encrypted and cannot be intercepted by attackers.\n\nBy combining these techniques, developers can significantly reduce the risk of XSS attacks.",
+    "sources": [
+      {
+        "text": "# Cross Site Scripting Prevention Cheat Sheet ## Introduction This cheat sheet helps developers prevent XSS vulnerabilities. Cross-Site Scripting (XSS) is a misnomer. Originally this term was derived from early versions of the attack that were primarily focused on stealing data cross-site. Since then, the term has widened to include injection of basically any content. XSS attacks are serious and can lead to account impersonation, observing user behavior, loading external content, stealing sensitive data, and more. **This cheatsheet contains techniques to prevent or limit the impact of XSS. Since no single technique will solve XSS, using the right combination of defensive techniques will be necessary to prevent XSS.** ## Framework Security Fortunately, applications built with modern web frameworks have fewer XSS bugs, because these frameworks steer developers towards good security practic",
+        "source": "Cross_Site_Scripting_Prevention_Cheat_Sheet.md",
+        "distance": 0.551398515701294
+      },
+      {
+        "text": " ``` ### Mitigation: Data Leakage Always use HTTPS for all communications to prevent data interception. Limit data collection and be transparent by clearly stating what data is collected in a Privacy Policy.Implement user consent mechanisms before collecting or sending any personal data. ## 3. Cross-Site Scripting (XSS) ### Vulnerability: Cross-Site Scripting (XSS) If user input is not properly sanitized, attackers can inject malicious scripts into web pages, potentially stealing user data or performing unauthorized actions. ### Example: Cross-Site Scripting (XSS) ```javascript let userInput = document.getElementById('input').value; document.getElementById('output').innerHTML = userInput; // No sanitization ``` ### Mitigation: Cross-Site Scripting (XSS) Implement Content Security Policy (CSP) to block inline scripts. Use libraries like DOMPurify to sanitize user input before displaying i",
+        "source": "Browser_Extension_Vulnerabilities_Cheat_Sheet.md",
+        "distance": 0.7310331463813782
+      },
+      {
+        "text": " cross-site form-submissions. It will only allow resources from the originating domain for all the default level directives and will not allow inline scripts/styles to execute. If your application functions with these restrictions, it drastically reduces your attack surface and works with most modern browsers. The most basic policy assumes: - All resources are hosted by the same domain of the document. - There are no inlines or evals for scripts and style resources. - There is no need for other websites to frame the website. - There are no form-submissions to external websites. ```text Content-Security-Policy: default-src 'self'; frame-ancestors 'self'; form-action 'self'; ``` To tighten further, one can apply the following: ```text Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'; frame-ancestors 'self'; form-action 'se",
+        "source": "Content_Security_Policy_Cheat_Sheet.md",
+        "distance": 0.751099169254303
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "What is the principle of least privilege?",
+    "answer": "The principle of least privilege, also known as the principle of minimal privilege, is a security concept that refers to the practice of assigning users only the minimum level of access necessary to perform their job or function. This principle aims to reduce the risk of unauthorized access or misuse of resources by limiting the privileges granted to users.",
+    "sources": [
+      {
+        "text": " group. ## Recommendations ### Enforce Least Privileges As a security concept, Least Privileges refers to the principle of assigning users only the minimum privileges necessary to complete their job. Although perhaps most commonly applied in system administration, this principle has relevance to the software developer as well. Least Privileges must be applied both horizontally and vertically. For example, even though both an accountant and sales representative may occupy the same level in an organization's hierarchy, both require access to different resources to perform their jobs. The accountant should likely not be granted access to a customer database and the sales representative should not be able to access payroll data. Similarly, the head of the sales department is likely to need more privileged access than their subordinates. Failure to enforce least privileges in an application c",
+        "source": "Authorization_Cheat_Sheet.md",
+        "distance": 0.6056498289108276
+      },
+      {
+        "text": "l threats to be fully realized. Horizontal privilege escalation (i.e. being able to access another user's resources) is an especially common weakness that an authenticated user may be able to take advantage of. Faults related to authorization control can allow malicious insiders and outsiders alike to view, modify, or delete sensitive resources of all forms (database records, static files, personally identifiable information (PII), etc.) or perform actions, such as creating a new account or initiating a costly order, that they should not be privileged to do. Furthermore, if logging related to access control is not properly set-up, such authorization violations may go undetected or at least remain unattributable to a particular individual or group. ## Recommendations ### Enforce Least Privileges As a security concept, Least Privileges refers to the principle of assigning users only the mi",
+        "source": "Authorization_Cheat_Sheet.md",
+        "distance": 0.9695468544960022
+      },
+      {
+        "text": "rm and severity. Attackers may be able to read, create, modify, or delete resources that were meant to be protected (thus jeopardizing their confidentiality, integrity, and/or availability); however, the actual impact of such actions is necessarily linked to the criticality and sensitivity of the compromised resources. Thus, the business cost of a successfully exploited authorization flaw can range from very low to extremely high. Both entirely unauthenticated outsiders and authenticated (but not necessarily authorized) users can take advantage of authorization weaknesses. Although honest mistakes or carelessness on the part of non-malicious entities may enable authorization bypasses, malicious intent is typically required for access control threats to be fully realized. Horizontal privilege escalation (i.e. being able to access another user's resources) is an especially common weakness ",
+        "source": "Authorization_Cheat_Sheet.md",
+        "distance": 1.0914438962936401
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "How should passwords be stored securely?",
+    "answer": "Passwords should be stored securely using strong, slow hashing algorithms such as Argon2id, bcrypt, or PBKDF2. A unique salt must be added to each password to prevent attackers from using precomputed lookup tables like rainbow tables. Fast hashing algorithms such as SHA-256 are not suitable for password storage because they allow attackers to perform large numbers of guesses quickly. Using slow, memory-hard algorithms makes brute-force attacks significantly more difficult.",
+    "sources": [
+      {
+        "text": "# Password Storage Cheat Sheet ## Introduction This cheat sheet advises you on the proper methods for storing passwords for authentication. When passwords are stored, they must be protected from an attacker even if the application or database is compromised. Fortunately, a majority of modern languages and frameworks provide built-in functionality to help store passwords safely. Passwords should never be stored in plain text. Instead, they must be protected using strong, slow hashing algorithms such as Argon2id, bcrypt, or PBKDF2. A unique salt must be added to each password to prevent attackers from using precomputed lookup tables like rainbow tables. Fast hashing algorithms such as SHA‑256 are not suitable for password storage because they allow attackers to perform large numbers of guesses quickly. Using slow, memory‑hard algorithms makes brute‑force attacks significantly more difficul",
+        "source": "Password_Storage_Cheat_Sheet.md",
+        "distance": 0.6768803000450134
+      },
+      {
+        "text": "# Cryptographic Storage Cheat Sheet ## Introduction This article provides a simple model to follow when implementing solutions to protect data at rest. Passwords should not be stored using reversible encryption - secure password hashing algorithms should be used instead. The [Password Storage Cheat Sheet](Password_Storage_Cheat_Sheet.md) contains further guidance on storing passwords. ## Architectural Design The first step in designing any application is to consider the overall architecture of the system, as this will have a huge impact on the technical implementation. This process should begin with considering the [threat model](Threat_Modeling_Cheat_Sheet.md) of the application (i.e, who you are trying to protect that data against). The use of dedicated secret or key management systems can provide an additional layer of security protection, as well as making the management of secrets s",
+        "source": "Cryptographic_Storage_Cheat_Sheet.md",
+        "distance": 0.7700902819633484
+      },
+      {
+        "text": "rity question(s). - If the answer is correct, the user can enter a new password. ### How to Use Security Questions #### Storing Answers The answers to security questions may contain personal information about the user, and may also be re-used by the user between different applications. As such, they should be treated in the same way as passwords, and stored using a secure hashing algorithm such as Bcrypt. The [password storage cheat sheet](Password_Storage_Cheat_Sheet.md) contains further guidance on this. #### Comparing Answers Comparing the answers provided by the user with the stored answer in a case-insensitive manner makes it much easier for the user. The simplest way to do this is to convert the answer to lowercase before hashing the answer to store it, and then lowercase the user-provided answer before comparing them. It is also beneficial to give the user some indication of the f",
+        "source": "Choosing_and_Using_Security_Questions_Cheat_Sheet.md",
+        "distance": 0.8874145746231079
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What is CSRF and how can it be prevented?",
+    "answer": "Cross-Site Request Forgery (CSRF) is an attack that tricks a user into performing unwanted actions on a website they are currently authenticated on. The attacker tricks the user into performing actions on the user's behalf by exploiting the user's trust in the attacker's site. This can lead to unauthorized actions such as changing a password, transferring funds, or making unauthorized purchases.\n\nCSRF can be prevented by several methods. One of the main methods is to use CSRF tokens. These tokens are unique per user session and are secret and unpredictable. They are transmitted to the client as part of a response payload, such as a HTML or JSON response, and then can be transmitted back to the server as a hidden field on a form submission or via an AJAX request as a custom header value. \n\nAnother method is to employ custom request headers in AJAX requests. This can be done by including a custom request header on protected state-changing requests, and this can be done by including a custom request header in AJAX requests. This technique is described in the Robust Defenses for Cross-Site Request Forgery section 4.1.\n\nAdditionally, JavaScript can be used to automatically include CSRF tokens as an AJAX request header. This can be done by including a custom request header in AJAX requests, and this can be done by prefering maintained framework or HTTP client integrations where available. It is important to avoid adding CSRF tokens through global header defaults or by globally overriding `XMLHttpRequest.prototype.open`, as unrelated requests could receive the token. Client-side CSRF handling does not replace server-side token validation.",
+    "sources": [
+      {
+        "text": "f that token was not found within the request or the value provided does not match the value within the user session. Additional actions such as logging the event as a potential CSRF attack in progress should also be considered. CSRF tokens should be: - Unique per user session. - Secret - Unpredictable (large random value generated by a [secure method](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation)). CSRF tokens prevent CSRF because without a CSRF token, an attacker cannot create valid requests to the backend server. #### Transmitting CSRF Tokens in Synchronized Patterns The CSRF token can be transmitted to the client as part of a response payload, such as a HTML or JSON response, then it can be transmitted back to the server as a hidden field on a form submission or via an AJAX request as a custom header value or pa",
+        "source": "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
+        "distance": 0.760104238986969
+      },
+      {
+        "text": "s used, which means that the target site's challenge-response mechanism does not verify the identity and authority of the requester. In effect, CSRF attacks make a target system perform attacker-specified functions via the victim's browser without the victim's knowledge (normally until after the unauthorized actions have been committed). However, successful CSRF attacks can only exploit the capabilities exposed by the vulnerable application and the user's privileges. Depending on the user's credentials, the attacker can transfer funds, change a password, make an unauthorized purchase, elevate privileges for a target account, or take any action that the user is permitted to do. In short, the following principles should be followed to defend against CSRF: **IMPORTANT: Remember that Cross-Site Scripting (XSS) can defeat all CSRF mitigation techniques!** While Cross-Site Scripting (XSS) vuln",
+        "source": "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
+        "distance": 0.8198353052139282
+      },
+      {
+        "text": "ixation.pdf). This technique is described in [Robust Defenses for Cross-Site Request Forgery section 4.1](https://seclab.stanford.edu/websec/csrf/csrf.pdf). Login CSRF can also be mitigated by including a custom request headers in AJAX request as described [above](#employing-custom-request-headers-for-ajaxapi). ## JavaScript: Automatically Including CSRF Tokens as an AJAX Request Header JavaScript clients can send CSRF tokens in a custom request header on protected state-changing requests. Prefer maintained framework or HTTP client integrations where available. Do not add CSRF tokens through global header defaults or by globally overriding `XMLHttpRequest.prototype.open`, because unrelated requests could receive the token. Client-side CSRF handling does not replace server-side token validation. Keep `GET`, `HEAD`, and `OPTIONS` free of state changes, and validate tokens on every protecte",
+        "source": "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
+        "distance": 0.8383965492248535
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "How can applications prevent insecure deserialization?",
+    "answer": "Applications can prevent insecure deserialization by implementing a combination of strategies, including filtering untrusted input, using serialization filters, and hardening all `java.io.ObjectInputStream` usage with an agent. Additionally, configuring serialization filters with an application-specific class allowlist and resource limits before reading objects can reduce risks. Implementing a custom `resolveClass()` method can also help, though it alone does not bound resource consumption. Clear-box review of the Java API usage for potential serialization vulnerabilities is also important.",
+    "sources": [
+      {
+        "text": "# Deserialization Cheat Sheet ## Introduction This article is focused on providing clear, actionable guidance for safely deserializing untrusted data in your applications. ## What is Deserialization **Serialization** is the process of turning some object into a data format that can be restored later. People often serialize objects in order to save them for storage, or to send as part of communications. **Deserialization** is the reverse of that process, taking data structured in some format, and rebuilding it into an object. Today, the most popular data format for serializing data is JSON. Before that, it was XML. However, many programming languages have native ways to serialize objects. These native formats usually offer more features than JSON or XML, including customization of the serialization process. Unfortunately, the features of these native deserialization mechanisms can sometim",
+        "source": "Deserialization_Cheat_Sheet.md",
+        "distance": 0.5817708969116211
+      },
+      {
+        "text": " Filtering does not make arbitrary untrusted deserialization safe. More complete implementations of this approach have been proposed by various community members: - [NibbleSec](https://github.com/ikkisoft/SerialKiller) - a library that allows creating lists of classes that are allowed to be deserialized - [IBM](https://www.ibm.com/developerworks/library/se-lookahead/) - the seminal protection, written years before the most devastating exploitation scenarios were envisioned. - [Apache Commons IO classes](https://commons.apache.org/proper/commons-io/javadocs/api-2.5/org/apache/commons/io/serialization/ValidatingObjectInputStream.html) #### Harden All java.io.ObjectInputStream Usage with an Agent As mentioned above, the `java.io.ObjectInputStream` class is used to deserialize objects. It's possible to harden its behavior by subclassing it. However, if you don't own the code or can't wait fo",
+        "source": "Deserialization_Cheat_Sheet.md",
+        "distance": 0.6947717070579529
+      },
+      {
+        "text": "usted input. ### Java For historical research on Java deserialization and defensive allowlisting, see [Java Deserialization Attacks — German OWASP Day 2016](../assets/Deserialization_Cheat_Sheet_GOD16Deserialization.pdf). The following techniques can reduce risks when using [Java's Serializable format](https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html). Implementation advice: - Configure [serialization filters](https://docs.oracle.com/en/java/javase/17/core/serialization-filtering1.html) with an application-specific class allowlist and resource limits before reading objects. - If maintaining a `resolveClass()` override, account for its [limitations below](#harden-your-own-javaioobjectinputstream); class checks alone do not bound resource consumption. #### Clear-box Review Be aware of the following Java API uses for potential serialization vulnerability. 1. `XMLdecoder` ",
+        "source": "Deserialization_Cheat_Sheet.md",
+        "distance": 0.7174085378646851
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What are best practices for logging security events?",
+    "answer": "Best practices for logging security events include using consistent, well-defined formats that can be readily parsed for analysis. Personal data should be de-identified using techniques such as deletion, scrambling, or pseudonymization where the individual's identity is not required, or the risk is considered too great. Customizable logging should be implemented with the default level providing sufficient detail for business needs and ensuring it is not possible to completely deactivate application logging. Logs should be transmitted securely using a secure transmission protocol. The origin of the event data should be verified, and due diligence checks (regulatory and security) should be performed before sending event data to third parties. Additionally, the logged event data should be available for review, and processes should be in place for monitoring, alerting, and reporting. Incorporating the application logging into existing log management systems or infrastructure, such as centralized logging and analysis systems, is also recommended.",
+    "sources": [
+      {
+        "text": "nized as among the most critical security risks in [OWASP's Top Ten 2021](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/). Appropriate logs can not only detect malicious activity, but are also invaluable resources in post-incident investigations, can be used to troubleshoot access control and other security related problems, and are useful in security auditing. Though easy to overlook during the initial design and requirements phase, logging is an important component of holistic application security and must be incorporated into all phases of the SDLC. Recommendations for logging include the following: - Log using consistent, well-defined formats that can be readily parsed for analysis. According to [OWASP Top Ten Proactive Controls C9](https://owasp.org/www-project-proactive-controls/v3/en/c9-security-logging), [Apache Logging Services](https://logging.apache",
+        "source": "Authorization_Cheat_Sheet.md",
+        "distance": 0.5305690765380859
+      },
+      {
+        "text": " be treated in some special manner before the event is recorded: - File paths - Database connection strings - Internal network names and addresses - Non sensitive personal data (e.g. personal names, telephone numbers, email addresses) Consider using personal data de-identification techniques such as deletion, scrambling or pseudonymization of direct and indirect identifiers where the individual's identity is not required, or the risk is considered too great. In some systems, sanitization can be undertaken post log collection, and prior to log display. ### Customizable logging It may be desirable to be able to alter the level of logging (type of events based on severity or threat level, amount of detail recorded). If this is implemented, ensure that: - The default level must provide sufficient detail for business needs - It should not be possible to completely deactivate application loggi",
+        "source": "Logging_Cheat_Sheet.md",
+        "distance": 0.5541467666625977
+      },
+      {
+        "text": "g. for collection, for dispatch elsewhere, for analysis, for reporting), use a secure transmission protocol - Consider whether the origin of the event data needs to be verified - Perform due diligence checks (regulatory and security) before sending event data to third parties See `NIST SP 800-92` Guide to Computer Security Log Management for more guidance. ### Monitoring of events The logged event data needs to be available to review and there are processes in place for appropriate monitoring, alerting, and reporting: - Incorporate the application logging into any existing log management systems/infrastructure e.g. centralized logging and analysis systems - Ensure event information is available to appropriate teams - Enable alerting and signal the responsible teams about more serious events immediately - Share relevant event information with other detection systems, to related organizati",
+        "source": "Logging_Cheat_Sheet.md",
+        "distance": 0.5618798136711121
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "What are recommended practices for secure user authentication?",
+    "answer": "Recommended practices for secure user authentication include:\n\n1. **Adaptive Authentication**: Use risk-based authentication models that adapt to the user's behavior and context.\n2. **Multi-Factor Authentication (MFA)**: Require an additional layer of verification for sensitive actions or events.\n3. **Bound Authenticators**: Require an authenticator already bound to the account, such as the current password or a passkey. Security questions are excluded by [ASVS 6.4.2](https://github.com/OWASP/ASVS/blob/master/5.0/en/0x15-V6-Authentication.md#v64-authentication-factor-lifecycle-and-recovery).\n4. **Minimize User Friction**: Ensure that re-authentication does not disrupt the user experience unnecessarily.\n5. **Context-Aware Decisions**: Make re-authentication decisions based on context (e.g., geolocation, device type, prior patterns).\n6. **Secure Session Management**: Ensure that re-authentication does not disrupt the user experience unnecessarily.\n7. **Use strong and unique passwords for database accounts**.\n8. **Restrict permissions to the minimum required**.\n9. **Regularly review and remove user accounts**.\n10. **Keep user handles opaque and free of personally identifying information**.\n11. **Monitor registration, authentication, recovery, and administrative mapping changes**.\n12. **Never let a failed passkey ceremony silently fall back to a non-phishing-resistant method**.\n13. **Use generic error messages** and protect account-first flows from enumeration.\n14. **Keep stored authenticator metadata and restrict access to it**.\n15. **Use modern ciphers (e.g, AES-GCM or ChaCha20)** and verify the digital certificate for client applications.\n16. **Securely configure TLS** as per the [Transport Layer Security Cheat Sheet](Transport_Layer_Security_Cheat_Sheet.md).\n17. **Notify users of credential lifecycle changes and retain useful audit events**.\n18. **Make recovery commensurate with the security of passkey authentication**.\n19. **Document incident procedures for a compromised authenticator, sync account, RP origin, or WebAuthn library**.\n20. **Avoid attestation unless a documented requirement justifies it**.\n21. **Do not expose raw credential IDs in user interfaces, URLs, or logs**.\n22. **Never let a failed passkey ceremony silently fall back to a non-phishing-resistant method**.",
+    "sources": [
+      {
+        "text": "immediate server-side revocation. - Notify users of credential lifecycle changes and retain useful audit events. - Make recovery commensurate with the security of passkey authentication. - Use generic error messages and protect account-first flows from enumeration. - Never let a failed passkey ceremony silently fall back to a non-phishing-resistant method. ### Privacy and Operations - Keep user handles opaque and free of personally identifying information. - Avoid attestation unless a documented requirement justifies it. - Do not expose raw credential IDs in user interfaces, URLs, or logs. - Minimize stored authenticator metadata and restrict access to it. - Monitor registration, authentication, recovery, and administrative mapping changes. - Document incident procedures for a compromised authenticator, sync account, RP origin, or WebAuthn library. ## References - [W3C Web Authentication",
+        "source": "Passkey_Security_Cheat_Sheet.md",
+        "distance": 0.8053866028785706
+      },
+      {
+        "text": "ith modern ciphers (e.g, AES-GCM or ChaCha20). - The client application should verify that the digital certificate is correct. The [Transport Layer Security Cheat Sheet](Transport_Layer_Security_Cheat_Sheet.md) contains further guidance on securely configuring TLS. ## Configuring Secure Authentication The database should always require authentication, including connections from the local server. Database accounts should be: - Protected with strong and unique passwords. - Used by a single application or service. - Configured with the minimum permissions required as discussed in the [permissions section below](#creating-secure-permissions). As with any system that has its own user accounts, the usual account management processes should be followed, including: - Regular reviews of the accounts to ensure that they are still required. - Regular reviews of permissions. - Removing user accounts",
+        "source": "Database_Security_Cheat_Sheet.md",
+        "distance": 0.818077564239502
+      },
+      {
+        "text": "### Re-authentication Mechanisms - **Adaptive Authentication** Use risk-based authentication models that adapt to the user's behavior and context - **Multi-Factor Authentication (MFA)** Require an additional layer of verification for sensitive actions or events - **Bound Authenticators** Require an authenticator already bound to the account, such as the current password or a passkey. Do not substitute security questions, which are excluded by [ASVS 6.4.2](https://github.com/OWASP/ASVS/blob/master/5.0/en/0x15-V6-Authentication.md#v64-authentication-factor-lifecycle-and-recovery). #### Implementation Recommendations - **Minimize User Friction** Ensure that re-authentication does not disrupt the user experience unnecessarily - **Context-Aware Decisions** Make re-authentication decisions based on context (e.g., geolocation, device type, prior patterns) - **Secure Session Management** Invalid",
+        "source": "owasp_authentication.md",
+        "distance": 0.8432489037513733
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "How can applications prevent clickjacking attacks?",
+    "answer": "Applications can prevent clickjacking attacks by implementing several mechanisms. According to the provided context, these mechanisms include:\n\n1. **Preventing the browser from loading the page in a frame using the X-Frame-Options or Content Security Policy (frame-ancestors) HTTP headers.**\n2. **Preventing session cookies from being included in cross-site iframe requests using the SameSite cookie attribute.**\n3. **Implementing JavaScript code in the page to attempt to prevent it being loaded in a frame (known as a \"frame-buster\").**\n\nAdditionally, the context mentions that for legacy browsers that do not support the X-Frame-Options header, a \"frame-breaker\" script can be included in each page to prevent it from being framed.",
+    "sources": [
+      {
+        "text": "://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value) cookie attribute. - Implementing JavaScript code in the page to attempt to prevent it being loaded in a frame (known as a \"frame-buster\"). These mechanisms address frame-based clickjacking. [DoubleClickjacking](#defending-against-doubleclickjacking) uses separate windows and requires additional safeguards for sensitive actions. Note that these mechanisms are all independent of each other, and where possible more than one of them should be implemented in order to provide defense in depth. ## Defending with Content Security Policy (CSP) frame-ancestors directive The `frame-ancestors` directive can be used in a Content-Security-Policy HTTP response header to indicate whether or not a browser should be allowed to render a page in a `<frame>` or `<iframe>`. Sites can use this to avoid Clickjackin",
+        "source": "Clickjacking_Defense_Cheat_Sheet.md",
+        "distance": 0.7591779232025146
+      },
+      {
+        "text": "# Clickjacking Defense Cheat Sheet ## Introduction This cheat sheet is intended to provide guidance for developers on how to defend against [Clickjacking](https://owasp.org/www-community/attacks/Clickjacking), also known as UI redress attacks. There are three main mechanisms that can be used to defend against these attacks: - Preventing the browser from loading the page in frame using the [X-Frame-Options](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) or [Content Security Policy (frame-ancestors)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) HTTP headers. - Preventing session cookies from being included in cross-site iframe requests using the [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value) cookie attribute. - Implementing JavaScript code in ",
+        "source": "Clickjacking_Defense_Cheat_Sheet.md",
+        "distance": 0.8249673843383789
+      },
+      {
+        "text": "isabled from the start and test that users can enable and activate them with mouse, keyboard, touch, and assistive technology. [Click events support all these input methods](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event); do not require every user to move a mouse or press a key. - Keep the framing defenses above for frame-based attacks. Client-side interaction checks supplement these defenses and do not replace transaction authorization. ## Best-for-now Legacy Browser Frame Breaking Script One way to defend against clickjacking is to include a \"frame-breaker\" script in each page that should not be framed. The following methodology will prevent a webpage from being framed even in legacy browsers, that do not support the X-Frame-Options-Header. In the document HEAD element, add the following: First apply an ID to the style element itself: ```html <style id=\"antiClick",
+        "source": "Clickjacking_Defense_Cheat_Sheet.md",
+        "distance": 0.9079777002334595
+      }
+    ]
+  }
+]

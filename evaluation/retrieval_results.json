@@ -1,0 +1,117 @@
+{
+  "metric": "Recall@3",
+  "score": 0.9,
+  "total_questions": 10,
+  "results": [
+    {
+      "id": 1,
+      "question": "What is SQL injection and how can it be prevented?",
+      "expected_source": "SQL_Injection_Prevention_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "SQL_Injection_Prevention_Cheat_Sheet.md",
+        "LDAP_Injection_Prevention_Cheat_Sheet.md",
+        "Injection_Prevention_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 2,
+      "question": "How do parameterized queries prevent SQL injection?",
+      "expected_source": "SQL_Injection_Prevention_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Query_Parameterization_Cheat_Sheet.md",
+        "SQL_Injection_Prevention_Cheat_Sheet.md",
+        "Query_Parameterization_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 3,
+      "question": "What is cross-site scripting and how can it be prevented?",
+      "expected_source": "Cross_Site_Scripting_Prevention_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Cross_Site_Scripting_Prevention_Cheat_Sheet.md",
+        "Browser_Extension_Vulnerabilities_Cheat_Sheet.md",
+        "Content_Security_Policy_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 4,
+      "question": "What is the principle of least privilege?",
+      "expected_source": "Authorization_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Authorization_Cheat_Sheet.md",
+        "Authorization_Cheat_Sheet.md",
+        "Authorization_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 5,
+      "question": "How should passwords be stored securely?",
+      "expected_source": "Password_Storage_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Password_Storage_Cheat_Sheet.md",
+        "Cryptographic_Storage_Cheat_Sheet.md",
+        "Choosing_and_Using_Security_Questions_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 6,
+      "question": "What is CSRF and how can it be prevented?",
+      "expected_source": "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
+        "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
+        "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 7,
+      "question": "How can applications prevent insecure deserialization?",
+      "expected_source": "Deserialization_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Deserialization_Cheat_Sheet.md",
+        "Deserialization_Cheat_Sheet.md",
+        "Deserialization_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 8,
+      "question": "What are best practices for logging security events?",
+      "expected_source": "Logging_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Authorization_Cheat_Sheet.md",
+        "Logging_Cheat_Sheet.md",
+        "Logging_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    },
+    {
+      "id": 9,
+      "question": "What are recommended practices for secure user authentication?",
+      "expected_source": "Authentication_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Passkey_Security_Cheat_Sheet.md",
+        "Database_Security_Cheat_Sheet.md",
+        "owasp_authentication.md"
+      ],
+      "hit_at_3": false
+    },
+    {
+      "id": 10,
+      "question": "How can applications prevent clickjacking attacks?",
+      "expected_source": "Clickjacking_Defense_Cheat_Sheet.md",
+      "retrieved_sources": [
+        "Clickjacking_Defense_Cheat_Sheet.md",
+        "Clickjacking_Defense_Cheat_Sheet.md",
+        "Clickjacking_Defense_Cheat_Sheet.md"
+      ],
+      "hit_at_3": true
+    }
+  ]
+}

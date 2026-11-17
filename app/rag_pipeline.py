@@ -1,3 +1,5 @@
+import os
+from app.ollama_client import generate_answer as ollama_generate_answer
 from pathlib import Path
 import chromadb
 from sentence_transformers import SentenceTransformer
@@ -52,7 +54,7 @@ def answer_question(question: str, top_k: int = 3):
         for doc in documents
     )
 
-    answer = generate_answer(question, context)
+    answer = (ollama_generate_answer(question, context) if os.getenv("LLM_PROVIDER", "ollama").lower() == "ollama" else generate_answer(question, context))
 
     return {
         "question": question,

@@ -1,0 +1,58 @@
+{
+  "evaluation_type": "manual_groundedness_review",
+  "reviewed_questions": 10,
+  "total_questions": 10,
+  "results": [
+    {
+      "id": 1,
+      "assessment": "Mostly grounded",
+      "notes": "Core SQL injection explanation is supported by OWASP. Some prevention guidance appears influenced by the retrieved LDAP injection document."
+    },
+    {
+      "id": 2,
+      "assessment": "Grounded",
+      "notes": "Explanation of parameterized queries is consistent with the retrieved OWASP SQL injection and query parameterization documents."
+    },
+    {
+      "id": 3,
+      "assessment": "Partially grounded",
+      "notes": "XSS and CSP guidance is supported, but the answer includes general privacy and HTTPS advice that is not specific to XSS prevention."
+    },
+    {
+      "id": 4,
+      "assessment": "Grounded",
+      "notes": "The least privilege definition is directly supported by the OWASP Authorization Cheat Sheet."
+    },
+    {
+      "id": 5,
+      "assessment": "Grounded",
+      "notes": "Password hashing, salting, and algorithm recommendations are supported by the OWASP Password Storage Cheat Sheet."
+    },
+    {
+      "id": 6,
+      "assessment": "Grounded",
+      "notes": "CSRF token and server-side validation guidance is appropriate, with some repetition."
+    },
+    {
+      "id": 7,
+      "assessment": "Grounded with limitations",
+      "notes": "Technical guidance is relevant but focuses primarily on Java deserialization."
+    },
+    {
+      "id": 8,
+      "assessment": "Grounded",
+      "notes": "Logging guidance covers structured logs, sensitive data handling, secure transmission, monitoring, and alerting."
+    },
+    {
+      "id": 9,
+      "assessment": "Partially grounded",
+      "notes": "Authentication guidance is mostly supported by retrieved documents, but mixes user authentication with database security, repeats a recommendation, and misstates session management. Expected source was not retrieved in top 3."
+    },
+    {
+      "id": 10,
+      "assessment": "Grounded",
+      "notes": "Clickjacking defenses are supported by OWASP. Frame-breaking scripts are legacy measures, not replacements for modern HTTP header defenses."
+    }
+  ],
+  "limitation": "Qualitative review of 10 generated answers against displayed retrieved source excerpts; not a comprehensive sentence-level factual audit."
+}

@@ -1,0 +1,16 @@
+{
+  "questions_evaluated": 10,
+  "expected_source_hit_rate_at_3": 0.9,
+  "generated_answers": 10,
+  "grounded": 6,
+  "grounded_with_limitations": 1,
+  "mostly_grounded": 1,
+  "partially_grounded": 2,
+  "evaluation_method": "Manual qualitative review against retrieved OWASP excerpts",
+  "limitations": [
+    "Small evaluation set of 10 questions",
+    "Groundedness was not verified sentence by sentence",
+    "One expected source was missing from the top-3 retrieval results",
+    "Some answers included irrelevant or repetitive information"
+  ]
+}
