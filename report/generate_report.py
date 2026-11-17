@@ -171,6 +171,28 @@ paragraph(
     "https://github.com/nt-mk/Canadian-Cybersecurity-RAG"
 )
 
+heading("Final Cloud Deployment Verification")
+
+paragraph(
+    "The final RAG application was deployed successfully to Google Cloud Run "
+    "using Docker image rag-api:v2 and Gemini 3.8 Flash through Vertex AI. "
+    "The authenticated POST /query test returned HTTP 200 with retrieved "
+    "OWASP source documents. Public access was enabled, and the unauthenticated "
+    "GET /health test returned HTTP 200 with status healthy."
+)
+
+paragraph(
+    "Public Cloud Run URL: "
+    "https://canadian-cybersecurity-rag-39590265002.us-central1.run.app"
+)
+
+paragraph(
+    "Google Cloud Storage: 100 source documents uploaded to bucket "
+    "canadian-cybersecurity-rag-docs-39590265002. "
+    "The deployment uses project gen-lang-client-0227281842 "
+    "in region us-central1."
+)
+
 heading("10. AI Use Disclosure")
 paragraph(
     "AI assistance supported coding, debugging, evaluation scripts, "
