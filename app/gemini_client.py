@@ -8,11 +8,12 @@ from google.genai import types
 load_dotenv()
 
 def generate_answer(question: str, context: str) -> str:
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        raise RuntimeError("GEMINI_API_KEY is missing from .env")
-
-    client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=15000))
+    client = genai.Client(
+        vertexai=True,
+        project=os.getenv("GOOGLE_CLOUD_PROJECT", "gen-lang-client-0227281842"),
+        location=os.getenv("GOOGLE_CLOUD_LOCATION", "global"),
+        http_options=types.HttpOptions(timeout=15000),
+    )
 
     for attempt in range(3):
         try:
